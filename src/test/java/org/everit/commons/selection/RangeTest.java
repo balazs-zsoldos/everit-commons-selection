@@ -20,6 +20,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.everit.commons.selection.range.Range;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -16,6 +16,8 @@
  */
 package org.everit.commons.selection;
 
+import org.everit.commons.selection.page.Limit;
+import org.everit.commons.selection.page.PageLimit;
 import org.junit.Assert;
 import org.junit.Test;
 

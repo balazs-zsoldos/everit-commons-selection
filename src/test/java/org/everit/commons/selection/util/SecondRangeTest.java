@@ -22,6 +22,8 @@ import java.util.List;
 
 import javax.xml.datatype.DatatypeFactory;
 
+import org.everit.commons.selection.range.time.Interval;
+import org.everit.commons.selection.range.time.SecondInterval;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -87,7 +89,7 @@ public class SecondRangeTest {
 
     @Test
     public void testGetAsDuration() {
-        SecondRange secondRange = new SecondRange(lowerBound, higherBound);
+        Interval<Long> secondRange = new SecondInterval(lowerBound, higherBound);
         Assert.assertEquals(expectedDuration, secondRange.getAsDuration());
     }
 

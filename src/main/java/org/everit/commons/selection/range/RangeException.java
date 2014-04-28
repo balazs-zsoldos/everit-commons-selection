@@ -14,23 +14,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with org.everit.commons.selection.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.everit.commons.selection;
+package org.everit.commons.selection.range;
 
-import org.everit.commons.selection.page.Limit;
-import org.everit.commons.selection.page.LimitUtil;
-import org.junit.Assert;
-import org.junit.Test;
+public class RangeException extends RuntimeException {
 
-public class LimitUtilTest {
+    private static final long serialVersionUID = -7760852011187692162L;
 
-    @Test
-    public void testShiftIfNecessary() {
-        Limit limit = new Limit(15, 6L);
-        Assert.assertEquals(limit, LimitUtil.shiftIfNecessary(limit, 19));
-        Assert.assertEquals(new Limit(12, 6L), LimitUtil.shiftIfNecessary(limit, 15));
-        limit = new Limit(20, 5L);
-        Assert.assertEquals(new Limit(5, 5L), LimitUtil.shiftIfNecessary(limit, 10));
-        Assert.assertEquals(new Limit(0, 5L), LimitUtil.shiftIfNecessary(limit, 0));
+    public RangeException(final String message) {
+        super(message);
     }
 
 }

@@ -19,6 +19,8 @@ package org.everit.commons.selection;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.everit.commons.selection.range.Range;
+import org.everit.commons.selection.range.RangeRelation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

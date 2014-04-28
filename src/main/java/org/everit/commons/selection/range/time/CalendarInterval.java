@@ -14,24 +14,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with org.everit.commons.selection.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.everit.commons.selection;
+package org.everit.commons.selection.range.time;
 
-import org.everit.commons.selection.page.Limit;
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.Calendar;
 
-public class LimitTest {
+public class CalendarInterval extends Interval<Calendar> {
 
-    private static final long FIRST_RESULT = 10;
+    private static final long serialVersionUID = -6559616483380030393L;
 
-    private static final long MAX_RESULTS = 5;
+    public CalendarInterval(final Calendar lowerBound, final Calendar higherBound) {
+        super(lowerBound, higherBound);
+    }
 
-    @Test
-    public void testRangeIntLong() {
-        Limit limit = new Limit(FIRST_RESULT, MAX_RESULTS);
-        Assert.assertNotNull(limit);
-        Assert.assertEquals(FIRST_RESULT, limit.getFirstResult());
-        Assert.assertEquals(MAX_RESULTS, limit.getMaxResults());
+    public CalendarInterval(final Calendar lowerBound, final Calendar higherBound, final boolean lowerInclusive,
+            final boolean higherInclusive) {
+        super(lowerBound, higherBound, lowerInclusive, higherInclusive);
+    }
+
+    @Override
+    protected long getHigherBoundInMillis() {
+        return higherBound.getTimeInMillis();
+    }
+
+    @Override
+    protected long getLowerBoundInMillis() {
+        return lowerBound.getTimeInMillis();
     }
 
 }

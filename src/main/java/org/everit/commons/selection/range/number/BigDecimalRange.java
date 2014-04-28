@@ -14,23 +14,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with org.everit.commons.selection.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.everit.commons.selection;
+package org.everit.commons.selection.range.number;
 
-import org.everit.commons.selection.page.Limit;
-import org.everit.commons.selection.page.LimitUtil;
-import org.junit.Assert;
-import org.junit.Test;
+import java.math.BigDecimal;
 
-public class LimitUtilTest {
+public class BigDecimalRange extends NumberRange<BigDecimal> {
 
-    @Test
-    public void testShiftIfNecessary() {
-        Limit limit = new Limit(15, 6L);
-        Assert.assertEquals(limit, LimitUtil.shiftIfNecessary(limit, 19));
-        Assert.assertEquals(new Limit(12, 6L), LimitUtil.shiftIfNecessary(limit, 15));
-        limit = new Limit(20, 5L);
-        Assert.assertEquals(new Limit(5, 5L), LimitUtil.shiftIfNecessary(limit, 10));
-        Assert.assertEquals(new Limit(0, 5L), LimitUtil.shiftIfNecessary(limit, 0));
+    private static final long serialVersionUID = 6844568521124522782L;
+
+    public BigDecimalRange(final BigDecimal lowerBound, final BigDecimal higherBound) {
+        super(lowerBound, higherBound);
     }
 
+    public BigDecimalRange(final BigDecimal lowerBound, final BigDecimal higherBound, final boolean lowerInclusive,
+            final boolean higherInclusive) {
+        super(lowerBound, higherBound, lowerInclusive, higherInclusive);
+    }
+
+    @Override
+    public BigDecimal getLength() {
+        return higherBound.subtract(lowerBound);
+    }
 }

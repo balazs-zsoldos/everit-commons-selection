@@ -19,8 +19,14 @@ package org.everit.commons.selection.lang;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.everit.commons.selection.math.BigDecimalRange;
-import org.everit.commons.selection.math.BigIntegerRange;
+import org.everit.commons.selection.range.number.BigDecimalRange;
+import org.everit.commons.selection.range.number.BigIntegerRange;
+import org.everit.commons.selection.range.number.ByteRange;
+import org.everit.commons.selection.range.number.DoubleRange;
+import org.everit.commons.selection.range.number.FloatRange;
+import org.everit.commons.selection.range.number.IntegerRange;
+import org.everit.commons.selection.range.number.LongRange;
+import org.everit.commons.selection.range.number.ShortRange;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -19,6 +19,9 @@ package org.everit.commons.selection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.everit.commons.selection.page.Limit;
+import org.everit.commons.selection.page.Page;
+import org.everit.commons.selection.page.PageLimit;
 import org.junit.Assert;
 import org.junit.Test;
 
