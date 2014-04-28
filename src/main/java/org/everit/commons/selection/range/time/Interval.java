@@ -16,6 +16,9 @@
  */
 package org.everit.commons.selection.range.time;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+
 import org.everit.commons.selection.range.Range;
 
 /**
@@ -25,6 +28,8 @@ import org.everit.commons.selection.range.Range;
  */
 public abstract class Interval<T extends Comparable<? super T>> extends Range<T> {
 
+    protected static final Format DEFAULT_FORMAT = new SimpleDateFormat("y-M-d HH:mm:ss");
+
     private static final long serialVersionUID = -6538272753451746418L;
 
     public Interval(final T lowerBound, final T higherBound) {
@@ -33,6 +38,13 @@ public abstract class Interval<T extends Comparable<? super T>> extends Range<T>
 
     public Interval(final T lowerBound, final T higherBound, final boolean lowerInclusive, final boolean higherInclusive) {
         super(lowerBound, higherBound, lowerInclusive, higherInclusive);
+    }
+
+    /**
+     * @return the interval length in milliseconds
+     */
+    public long getDurationInMs() {
+        return getHigherBoundInMillis() - getLowerBoundInMillis();
     }
 
     /**
@@ -85,8 +97,8 @@ public abstract class Interval<T extends Comparable<? super T>> extends Range<T>
      *
      * Useful for debugging and displaying purposes.
      */
-    public String getAsDuration() {
-        long duration = getDuration();
+    public String getFormattedDuration() {
+        long duration = getDurationInMs();
         if (duration == 0L) {
             return "0s";
         }
@@ -120,12 +132,24 @@ public abstract class Interval<T extends Comparable<? super T>> extends Range<T>
         return sb.toString();
     }
 
-    public long getDuration() {
-        return getHigherBoundInMillis() - getLowerBoundInMillis();
-    }
-
     protected abstract long getHigherBoundInMillis();
 
     protected abstract long getLowerBoundInMillis();
+
+    /**
+     * @return the interval with boundaries in "y-M-d HH:mm:ss" format.
+     */
+    @Override
+    public String toString() {
+        return toString(DEFAULT_FORMAT);
+    }
+
+    public String toString(final Format fmt) {
+        return new StringBuilder(41)
+                .append(fmt.format(getLowerBoundInMillis()))
+                .append(" - ")
+                .append(fmt.format(getHigherBoundInMillis()))
+                .toString();
+    }
 
 }

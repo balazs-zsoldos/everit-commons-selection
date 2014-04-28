@@ -90,7 +90,7 @@ public class SecondRangeTest {
     @Test
     public void testGetAsDuration() {
         Interval<Long> secondRange = new SecondInterval(lowerBound, higherBound);
-        Assert.assertEquals(expectedDuration, secondRange.getAsDuration());
+        Assert.assertEquals(expectedDuration, secondRange.getFormattedDuration());
     }
 
 }
