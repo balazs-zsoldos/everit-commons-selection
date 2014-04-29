@@ -30,6 +30,15 @@ public abstract class Interval<T extends Comparable<? super T>> extends Range<T>
 
     protected static final Format DEFAULT_FORMAT = new SimpleDateFormat("y-M-d HH:mm:ss");
 
+    protected static final ThreadLocal<Format> formatsPerThread = new ThreadLocal<Format>() {
+
+        @Override
+        protected Format initialValue() {
+            return (Format) DEFAULT_FORMAT.clone();
+        }
+
+    };
+
     private static final long serialVersionUID = -6538272753451746418L;
 
     public Interval(final T lowerBound, final T higherBound) {
@@ -141,15 +150,15 @@ public abstract class Interval<T extends Comparable<? super T>> extends Range<T>
      */
     @Override
     public String toString() {
-        return toString(DEFAULT_FORMAT);
+        return toString(formatsPerThread.get());
     }
 
     public String toString(final Format fmt) {
         return new StringBuilder(41)
-                .append(fmt.format(getLowerBoundInMillis()))
-                .append(" - ")
-                .append(fmt.format(getHigherBoundInMillis()))
-                .toString();
+        .append(fmt.format(getLowerBoundInMillis()))
+        .append(" - ")
+        .append(fmt.format(getHigherBoundInMillis()))
+        .toString();
     }
 
 }
